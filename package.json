@@ -1,0 +1,28 @@
+{
+  "name": "rocket-stage10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js",
+    "migrate": "knex migrate:latest"
+  },
+  "keywords": [],
+  "author": "Eduardo Augusto",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.3",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "multer": "^1.4.5-lts.1",
+    "muter": "^0.7.0",
+    "nodemon": "^3.0.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.6"
+  }
+}
