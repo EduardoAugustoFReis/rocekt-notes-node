@@ -4,22 +4,19 @@ const sqliteConnection = require("../database/sqlite"); // importando a conexão
 
 const { hash, compare } = require("bcryptjs"); // hash é a função para criptografar senhas
 
+const UserRepository = require("../repositories/userRepository");
+
+const UserCreateServices = require("../services/userCreateServices");
+
 class UserController{
   
   async create(request, response){
     const {name, email, password} = request.body;
 
-    const database = await sqliteConnection();
+   const userRepository = new UserRepository();
+   const userCreateServices = new UserCreateServices(userRepository);
 
-    const checkUserExist = await database.get("select * from users where email = (?)", [email] );
-    
-    if(checkUserExist){
-      throw new AppError("Este e-mail já está em uso.")
-    }
-
-    const hashedPassword = await hash(password, 8);
-
-    await database.run("insert into users (name, email, password) values (?,?,?)", [name, email, hashedPassword] );
+   await userCreateServices.execute( {name, email, password} );
 
     return response.status(201).json();
   }
